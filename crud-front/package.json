@@ -1,5 +1,5 @@
 {
-  "name": "front-crud",
+  "name": "crud-front",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
+    "bootswatch": "^5.2.3",
     "pinia": "^2.0.36",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
