@@ -2,7 +2,7 @@
 import { useStoreTest } from '../stores/storeTest';
 import { storeToRefs } from 'pinia';
 
-const { getUsersInfo,agregaUsuario} = useStoreTest();
+const { getUsersInfo,agregaUsuario, deleteUser} = useStoreTest();
 const { users } = storeToRefs(useStoreTest());
 getUsersInfo();
 
@@ -28,7 +28,7 @@ getUsersInfo();
                 <td>{{ usuario.name }}</td>
                 <td>romo@{{ usuario.email }}</td>
                 <td><button class="btn btn-info btn-black" @click="agregaUsuario">Update</button></td>
-                <td><button class="btn btn-danger btn-black">Delete</button></td> 
+                <td><button class="btn btn-danger btn-black" @click="deleteUser(usuario)">Delete</button></td> 
               </tr>
             </tbody>
           </table>

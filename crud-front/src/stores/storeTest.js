@@ -20,6 +20,10 @@ export const useStoreTest = defineStore('pruebas', () =>{
         })
         console.log(users.value)
     }
+    const deleteUser = user =>{
+        const index = users.value.indexOf(user);
+        index > -1? users.value.splice(index, 1): console.log("No existe el usuario");
+    }
 
-    return { getUsersInfo, users, agregaUsuario }
+    return { getUsersInfo, users, agregaUsuario, deleteUser }
 })
