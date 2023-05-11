@@ -1,9 +1,13 @@
 <script setup>
-import { useStoreTest } from '../stores/storeTest';
+import { useUserStore } from '../stores/useUserStore'
 import { storeToRefs } from 'pinia';
 
-const { getUsersInfo,agregaUsuario, deleteUser} = useStoreTest();
-const { users } = storeToRefs(useStoreTest());
+
+const userStore = useUserStore();
+const { getUsersInfo,agregaUsuario, deleteUser} = userStore;
+const { users } = storeToRefs(userStore)
+
+
 getUsersInfo();
 
 </script>
