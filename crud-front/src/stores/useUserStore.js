@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue';
-import { useFetch } from '../composables/useFetch';
 import axios from 'axios';
 export const useUserStore = defineStore("user",() => {
 
@@ -8,19 +7,22 @@ export const useUserStore = defineStore("user",() => {
     const getUsersInfo = async (url) =>{
         const res = await axios.get("http://localhost:3000/users")
         const data = res.data;
+        console.log(data.data);
         users.value = data.data
     }
-    const agregaUsuario = ()=>{
-        users.value.push({
-            id:40,
-            name:"JAJAJAJ",
-            email:"dasdad@asd@asd"
-        })
+    const addUser = async (name, email)=>{
+        console.log(name, email)
+        const userData = {
+            name,
+            email
+        }
+        const res = await axios.post("http://localhost:3000/users",userData);
+
     }
     const deleteUser = user =>{
         const index = users.value.indexOf(user);
         index > -1? users.value.splice(index, 1): console.log("No existe el usuario");
     }
 
-    return { getUsersInfo, users, agregaUsuario, deleteUser }
+    return { getUsersInfo, users, deleteUser , addUser }
 })

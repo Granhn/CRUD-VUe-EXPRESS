@@ -30,7 +30,7 @@ getUsersInfo();
               <tr v-for="(usuario,index) of users" :key="usuario.id">
                 <td>{{ usuario.id }}</td>
                 <td>{{ usuario.name }}</td>
-                <td>romo@{{ usuario.email }}</td>
+                <td>{{ usuario.email }}</td>
                 <td><button class="btn btn-info btn-black" @click="agregaUsuario">Update</button></td>
                 <td><button class="btn btn-danger btn-black" @click="deleteUser(usuario)">Delete</button></td> 
               </tr>
