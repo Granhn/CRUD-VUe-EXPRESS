@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import {useUserStore} from '../stores/useUserStore';
+import { storeToRefs } from 'pinia';
 let name = ref('');
 let email = ref('')
 const userStore = useUserStore();
 const { addUser } = userStore;
+const {error} = storeToRefs(userStore);
 const props = defineProps(['message']);
 const prueba = () => { console.log(name, email) }
 </script>
@@ -26,6 +28,9 @@ const prueba = () => { console.log(name, email) }
                     <div class="form-group">
                         <button class="form-control btn btn-primary "
                             placeholder="Reestablecer">Reestablecer</button>
+                    </div>
+                    <div class="form-group" v-if="error">
+                        <span>No se pudo crear el usuario, intente otra vez</span>
                     </div>
                 </div>
             </div>
