@@ -1,3 +1,3 @@
-BACKEND/node_modules
-BACKEND/package.json
-BACKEND/package-lock.json
+./BACKEND/node_modules
+./BACKEND/package.json
+./BACKEND/package-lock.json
