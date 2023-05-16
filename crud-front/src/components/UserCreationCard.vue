@@ -8,7 +8,14 @@ const userStore = useUserStore();
 const { addUser } = userStore;
 const {error} = storeToRefs(userStore);
 const props = defineProps(['message']);
-const prueba = () => { console.log(name, email) }
+const limpiarCard = () => {
+    name.value = ''
+    email.value = ''
+}
+const agregarUsuaro = () => {
+    addUser(name.value, email.value);
+    limpiarCard();
+}
 </script>
 <template>
     <div class="container">
@@ -23,7 +30,7 @@ const prueba = () => { console.log(name, email) }
                         <input type="email" class="form-control" placeholder="Email" v-model="email">
                     </div>
                     <div class="form-group">
-                        <button class="form-control btn btn-success  text-dark" @click="addUser(name,email)">Enviar</button>
+                        <button class="form-control btn btn-success  text-dark" @click="agregarUsuaro(name,email)">Enviar</button>
                     </div>
                     <div class="form-group">
                         <button class="form-control btn btn-primary "

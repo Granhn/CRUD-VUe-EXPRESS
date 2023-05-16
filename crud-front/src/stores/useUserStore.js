@@ -20,7 +20,7 @@ export const useUserStore = defineStore("user",() => {
         finally{
             loading.value=true;
         }
-    }
+    } 
     const addUser = async (name, email)=>{
         loading.value = true
         const userData = {
@@ -43,9 +43,17 @@ export const useUserStore = defineStore("user",() => {
 
 
     }
-    const deleteUser = user =>{
+    const deleteUser = async(user) =>{
         const index = users.value.indexOf(user);
-        index > -1? users.value.splice(index, 1): console.log("No existe el usuario");
+        if(index > -1){
+            await axios.delete(`http://localhost:3000/users/${user.id}`)
+            users.value.splice(index, 1);
+        }
+        else{
+            console.log("No existe el usuario");
+        }
+        // index > -1? users.value.splice(index, 1): 
+
     }
 
     return { getUsersInfo, users, deleteUser , addUser, error }
