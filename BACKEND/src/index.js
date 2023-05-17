@@ -1,8 +1,11 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const cors = require('cors');
 const app = express();
-const port = 3000
+const PORT = 3000
 
+
+dotenv.config();
 //Middlewares
 app.use(cors())
 app.use(express.json());
@@ -13,5 +16,5 @@ app.use(require('./routes/index'))
 
 
 
-app.listen(port) 
+app.listen(PORT) 
 console.log('Server on port 3000') 

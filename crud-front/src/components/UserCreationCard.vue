@@ -5,15 +5,24 @@ import { storeToRefs } from 'pinia';
 let name = ref('');
 let email = ref('')
 const userStore = useUserStore();
-const { addUser } = userStore;
+const { addUser, updateUserInfo } = userStore;
 const {error} = storeToRefs(userStore);
-const props = defineProps(['message']);
+const props = defineProps(['message','error_message',"card_type", "user_id"]);
 const limpiarCard = () => {
     name.value = ''
     email.value = ''
 }
 const agregarUsuaro = () => {
     addUser(name.value, email.value);
+    limpiarCard();
+}
+const actualizarUsuario = () => {
+    const userInfo = {
+        name:name.value,
+        email: email.value
+    }
+    console.log(props)
+    updateUserInfo(props.user_id,userInfo);
     limpiarCard();
 }
 </script>
@@ -30,14 +39,15 @@ const agregarUsuaro = () => {
                         <input type="email" class="form-control" placeholder="Email" v-model="email">
                     </div>
                     <div class="form-group">
-                        <button class="form-control btn btn-success  text-dark" @click="agregarUsuaro(name,email)">Enviar</button>
+                        <button class="form-control btn btn-success  text-dark" @click="agregarUsuaro(name,email)" v-if="card_type === 'creation'">Crear</button>
+                        <button class="form-control btn btn-success  text-dark" @click="actualizarUsuario" v-if="card_type === 'update'">Actualizar</button>
                     </div>
                     <div class="form-group">
                         <button class="form-control btn btn-primary "
-                            placeholder="Reestablecer">Reestablecer</button>
+                            placeholder="Reestablecer" @click="limpiarCard">Reestablecer</button>
                     </div>
                     <div class="form-group" v-if="error">
-                        <span>No se pudo crear el usuario, intente otra vez</span>
+                        <span>{{error_message}}</span>
                     </div>
                 </div>
             </div>
