@@ -2,28 +2,29 @@
 import { ref } from 'vue';
 import {useUserStore} from '../stores/useUserStore';
 import { storeToRefs } from 'pinia';
+
 let name = ref('');
 let email = ref('')
 const userStore = useUserStore();
 const { addUser, updateUserInfo } = userStore;
 const {error} = storeToRefs(userStore);
 const props = defineProps(['message','error_message',"card_type", "user_id"]);
-const limpiarCard = () => {
-    name.value = ''
-    email.value = ''
-}
+
 const agregarUsuaro = () => {
     addUser(name.value, email.value);
-    limpiarCard();
+    name.value = '';
+    email.value = '';
 }
-const actualizarUsuario = () => {
+const actualizarUsuario = async () => {
     const userInfo = {
         name:name.value,
         email: email.value
     }
-    console.log(props)
-    updateUserInfo(props.user_id,userInfo);
-    limpiarCard();
+    
+    console.log(props.user_id);
+    await updateUserInfo(props.user_id,userInfo);
+    name.value = '';
+    email.value = '';
 }
 </script>
 <template>

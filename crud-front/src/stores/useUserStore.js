@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 export const useUserStore = defineStore('user', () => {
   const users = ref([])
-  let user = ref({})
+  let user = ref({}) 
   const loading = ref(false)
   const error = ref(false)
   const getUsersInfo = async () => {
@@ -56,7 +56,6 @@ export const useUserStore = defineStore('user', () => {
   const updateUserInfo = async (userId, newUserData) => {
     console.log(userId)
     const res = await axios.put(`http://localhost:3000/users/${userId}`,newUserData);
-    console.log(data)
     user.value = res.data.user
   }
   return {
